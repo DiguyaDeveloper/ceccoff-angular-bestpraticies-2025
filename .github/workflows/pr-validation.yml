@@ -1,0 +1,53 @@
+name: PR Build Validation
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - release
+      - main
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configurar o Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Instalar dependências
+      - name: Install dependencies
+        run: npm install
+
+      # Lint do código
+      - name: Lint Code
+        run: npm run format
+
+      # Executar testes
+      - name: Run Tests
+        run: npm run test -- --ci --coverage
+
+      # Build da aplicação
+      - name: Build Application
+        run: npm run build -- --configuration development
+
+      - name: Post Test Results
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const results = fs.readFileSync('./test-results.txt', 'utf8');
+            const comment = `### Test Results\n\`\`\`\n${results}\n\`\`\``;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment,
+            });
