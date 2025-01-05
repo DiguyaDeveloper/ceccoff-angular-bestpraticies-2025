@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { VersionService } from '@core/version.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'my-angular-sonar-best-practicies';
+
+  constructor(private versionService: VersionService) {}
+
+  ngOnInit(): void {
+    const version = this.versionService.getVersion();
+    const metaTag = document.querySelector('meta[name="version"]');
+    if (metaTag) {
+      metaTag.setAttribute('content', version);
+    }
+  }
 }
