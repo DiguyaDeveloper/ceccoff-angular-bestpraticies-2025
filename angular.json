@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-19-best-practicies": {
+    "ceccoff-angular-19-best-practicies": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-19-best-practicies",
+            "outputPath": "dist/ceccoff-angular-19-best-practicies",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -93,10 +93,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-19-best-practicies:build:production"
+              "buildTarget": "ceccoff-angular-19-best-practicies:build:production"
             },
             "development": {
-              "buildTarget": "angular-19-best-practicies:build:development"
+              "buildTarget": "ceccoff-angular-19-best-practicies:build:development"
             }
           },
           "defaultConfiguration": "development"
