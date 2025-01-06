@@ -26,10 +26,22 @@ jobs:
           NODE_ENV: production
           API_KEY: ${{ secrets.API_KEY }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: npm run build -- --configuration development
+        run: npm run build -- --configuration development --base-href /ceccoff-angular-19-best-practicies/
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dev-build
           path: dist/
+
+      # Deploy para GitHub Pages
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git clone --branch gh-pages https://github.com/${{ github.repository }} gh-pages || git init gh-pages
+          cp -r dist/<project-name>/* gh-pages/
+          cd gh-pages
+          git add .
+          git commit -m "Deploy to GitHub Pages [skip ci]"
+          git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
