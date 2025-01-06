@@ -14,10 +14,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'my-angular-sonar-best-practicies' title`, () => {
+  it(`should have the 'angular-19-best-practicies' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('my-angular-sonar-best-practicies');
+    expect(app.title).toEqual('angular-19-best-practicies');
   });
 
   it('should render title', () => {
@@ -25,7 +25,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Hello, my-angular-sonar-best-practicies'
+      'Hello, angular-19-best-practicies'
     );
   });
 });

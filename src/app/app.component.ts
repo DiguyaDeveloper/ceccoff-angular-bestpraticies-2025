@@ -9,7 +9,7 @@ import { VersionService } from '@core/version.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'my-angular-sonar-best-practicies';
+  title = 'angular-19-best-practicies';
 
   constructor(private versionService: VersionService) {}
 

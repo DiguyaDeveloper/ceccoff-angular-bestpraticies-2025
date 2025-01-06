@@ -37,17 +37,3 @@ jobs:
       # Build da aplicação
       - name: Build Application
         run: npm run build -- --configuration development
-
-      - name: Post Test Results
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const results = fs.readFileSync('./test-results.txt', 'utf8');
-            const comment = `### Test Results\n\`\`\`\n${results}\n\`\`\``;
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment,
-            });
