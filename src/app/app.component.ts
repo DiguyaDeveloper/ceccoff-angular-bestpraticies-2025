@@ -9,7 +9,7 @@ import { VersionService } from '@core/version.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'angular-19-best-practicies';
+  title = 'ceccoff-angular-19-best-practicies';
 
   constructor(private versionService: VersionService) {}
 
